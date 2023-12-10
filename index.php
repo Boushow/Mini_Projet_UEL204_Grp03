@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
 	<title>Mini-projet G3</title>
 	<meta charset="UTF-8">

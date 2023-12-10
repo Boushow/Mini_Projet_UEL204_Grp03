@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
 	<title>Mini-projet G3</title>
 	<meta charset="UTF-8">
@@ -34,7 +34,7 @@
             <button type="submit" class="btn btn-primary">Ajouter le livre</button>
         </form>
 
-        <a href="index.php" class="btn btn-secondary mt-3">Retour à l'accueil</a>
+        <a href="../index.php" class="btn btn-secondary mt-3">Retour à l'accueil</a>
     </div>
 </body>
 </html>
