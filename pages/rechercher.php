@@ -1,4 +1,3 @@
-<?php session_start();?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -15,17 +14,7 @@
             <p class="txt-center m1-txt1 p-t-33 p-b-68">
                 Rechercher des livres
             </p>
-            <form method="post" action="">
-                <div class="form-group">
-                    <label for="term">Terme de recherche :</label>
-                    <input type="text" class="form-control" id="term" name="term" value="<?php echo $term; ?>" required>
-                </div>
-                <button type="submit" class="btn btn-primary">Rechercher</button>
-            </form>
-            <div class="mt-3">
-			
-				<?php
-				session_start();
+            <?php
 				require_once('config.php'); // Inclure le fichier de configuration de la base de données
 
 
@@ -59,7 +48,15 @@
                 } else {
                     echo '<p>Aucun résultat trouvé.</p>';
                 }
-                ?>
+            ?>
+            <form method="post" action="">
+                <div class="form-group">
+                    <label for="term">Terme de recherche :</label>
+                    <input type="text" class="form-control" id="term" name="term" value="<?php echo $term; ?>" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Rechercher</button>
+            </form>
+            <div class="mt-3">
             </div>
             <p class="txt-center">
                 <a class="btn btn-secondary" href="../index.php" title="Revenir à l'accueil">
