@@ -10,10 +10,73 @@
     <link href="../assets/style.css" rel="stylesheet">
 </head>
 <body>
+<?php 
+        if(isset($_SESSION['identifiant'])){
+    ?>
+    <header>
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="../index.php">
+                    <img src="../assets/icones/logo.png" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
+                    Bibliothèque
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarText">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="../index.php">Accueil</a>
+                    </li>
+                    <li class="nav-item">
+                    <a class="nav-link" href="../pages/rechercher.php">Rechercher</a>
+                    </li>
+                    <li class="nav-item">
+                    <a class="nav-link" href="../pages/ajouter.php">Ajouter un livre</a>
+                    </li>
+                </ul>
+                <a class="btn btn-primary" href="../pages/deconnexion.php" title="Deconnexion">Se déconnecter</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <?php 
+        }else{
+    ?>
+    <header>
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="../index.php">
+                    <img src="../assets/icones/logo.png" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
+                    Bibliothèque
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarText">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="../index.php">Accueil</a>
+                    </li>
+                    <li class="nav-item">
+                    <a class="nav-link" href="../pages/rechercher.php">Rechercher</a>
+                    </li>
+                    <li class="nav-item">
+                    <a class="nav-link" href="../pages/ajouter.php">Ajouter un livre</a>
+                    </li>
+                </ul>
+                <a class="btn btn-primary" href="../pages/connexion.php" title="Connexion">
+                    Se connecter
+                </a>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <?php }?>   
     <div class="container">
         <h1 class="mt-4 mb-4">Ajouter un livre</h1>		
 		<?php
-
+            
 
 
         
@@ -28,7 +91,7 @@
                 <label for="auteur">Auteur :</label>
                 <input type="text" class="form-control" id="auteur" name="auteur" required>
             </div>
-            <div class="form-group">
+            <div class="form-group pb-2">
                 <label for="annee">Année de publication :</label>
                 <input type="text" class="form-control" id="annee" name="annee" required>
             </div>

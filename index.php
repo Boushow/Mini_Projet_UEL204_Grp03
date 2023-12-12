@@ -10,9 +10,72 @@
     <link href="assets/style.css" rel="stylesheet">
 </head>
 <body>
-	<div class="size1 flex-w flex-c-m p-t-20 p-b-55 p-l-15 p-r-15">
-		<div class="wsize1 bor1 bg1 p-b-45 p-l-15 p-r-15 p-t-20 respon1">
-			<p class="txt-center m1-txt1 p-t-33 p-b-68">
+    <?php 
+        if(isset($_SESSION['identifiant'])){
+    ?>
+    <header>
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="index.php">
+                    <img src="assets/icones/logo.png" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
+                    Bibliothèque
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarText">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="index.php">Accueil</a>
+                    </li>
+                    <li class="nav-item">
+                    <a class="nav-link" href="pages/rechercher.php">Rechercher</a>
+                    </li>
+                    <li class="nav-item">
+                    <a class="nav-link" href="pages/ajouter.php">Ajouter un livre</a>
+                    </li>
+                </ul>
+                <a class="btn btn-primary" href="pages/deconnexion.php" title="Deconnexion">Se déconnecter</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <?php 
+        }else{
+    ?>
+    <header>
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="index.php">
+                    <img src="assets/icones/logo.png" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
+                    Bibliothèque
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarText">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="index.php">Accueil</a>
+                    </li>
+                    <li class="nav-item">
+                    <a class="nav-link" href="pages/rechercher.php">Rechercher</a>
+                    </li>
+                    <li class="nav-item">
+                    <a class="nav-link" href="pages/ajouter.php">Ajouter un livre</a>
+                    </li>
+                </ul>
+                <a class="btn btn-primary" href="pages/connexion.php" title="Connexion">
+                    Se connecter
+                </a>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <?php }?>   
+	<div class="size1 flex-w flex-c-m p-t-4 p-b-55 p-l-15 p-r-15">
+		<div class="wsize1 bor1 bg1 p-b-45 p-l-15 p-r-15 p-t-4 respon1">
+			<p class="txt-center m1-txt1 p-t-4 p-b-68">
 				Mini-projet G3
 			</p>
             <div class="alert alert-info text-justify">
@@ -21,25 +84,6 @@
                 </p>
 
             </div>
-            <!-- Se connecter -->
-            <div class="card">
-                <div class="card-header">
-                    <span class="font-weight-bold">Se connecter :</span>
-                </div>
-                <div class="card-body">
-                    <div class="card-text">
-                        <p>
-                            Veuillez vous connecter gràce à ce bouton qui vous mènera sur la page de connexion.
-                        </p>
-                        <p class="txt-center">
-                            <a class="btn btn-primary" href="pages/connexion.php" title="Connexion">
-                                Se connecter
-                            </a>
-                        </p>
-                    </div>
-                </div>
-            </div>
-
             <!-- Rechercher -->
             <div class="card">
                 <div class="card-header">
@@ -59,7 +103,6 @@
                 </div>
             </div>
 
-
             <!-- Ajout de Livre -->
             <div class="card">
                 <div class="card-header">
@@ -73,27 +116,6 @@
                         <p class="txt-center">
                             <a class="btn btn-primary" href="pages/ajouter.php" title="Ajouter">
                                 Ajouter un livre
-                            </a>
-                        </p>
-                    </div>
-                </div>
-            </div>
-			
-			
-			<!-- Déconnexion -->
-            <div class="card">
-                <div class="card-header">
-                    <span class="font-weight-bold">Se déconnecter</span> 
-                </div>
-                <div class="card-body">
-                    <div class="card-text">
-                        <p>
-                            Se déconnecter
-                        </p>
-						
-                        <p class="txt-center">
-                            <a class="btn btn-primary" href="pages/deconnexion.php" title="Deconnexion">
-                                Se déconnecter
                             </a>
                         </p>
                     </div>

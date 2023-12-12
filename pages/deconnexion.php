@@ -2,7 +2,7 @@
 session_start();
 
 // Vérifier si l'utilisateur est connecté
-if (isset($_SESSION['user'])) {
+if (isset($_SESSION['identifiant'])) {
     // Détruire toutes les données de la session
     session_unset();
     session_destroy();
