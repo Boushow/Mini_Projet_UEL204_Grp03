@@ -10,7 +10,78 @@
     <link href="../assets/style.css" rel="stylesheet">
 </head>
 <body class="products">
+    <?php 
+        if(isset($_SESSION['identifiant'])){
+    ?>
+    <header>
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="../index.php">
+                    <img src="../assets/icones/logo.png" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
+                    Bibliothèque
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarText">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="../index.php">Accueil</a>
+                    </li>
+                    <li class="nav-item">
+                    <a class="nav-link" href="../pages/rechercher.php">Rechercher</a>
+                    </li>
+                    <li class="nav-item">
+                    <a class="nav-link" href="../pages/ajouter.php">Ajouter un livre</a>
+                    </li>
+                </ul>
+                <a class="btn btn-primary" href="../pages/deconnexion.php" title="Deconnexion">Se déconnecter</a>
+                </div>
+            </div>
+        </nav>
+    </header>
 
+    <div class="d-flex justify-content-center align-items-center vh-100">
+        <div class="border rounded p-4 text-center">
+            <p class="mb-0">Bienvenue, <?php echo $_SESSION['identifiant']?> !</p>
+            <div class="pt-2">
+            <a class="btn btn-primary" href="../pages/deconnexion.php" title="Deconnexion">Se déconnecter</a>
+            <a class="btn btn-secondary" href="../index.php" title="Revenir à l'accueil">Revenir à l'accueil</a>
+            </div>
+        </div> 
+    </div>
+    <?php
+        }else{
+    ?>
+    <header>
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="../index.php">
+                    <img src="../assets/icones/logo.png" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
+                    Bibliothèque
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarText">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="../index.php">Accueil</a>
+                    </li>
+                    <li class="nav-item">
+                    <a class="nav-link" href="../pages/rechercher.php">Rechercher</a>
+                    </li>
+                    <li class="nav-item">
+                    <a class="nav-link" href="../pages/ajouter.php">Ajouter un livre</a>
+                    </li>
+                </ul>
+                <a class="btn btn-primary" href="../pages/connexion.php" title="Connexion">
+                    Se connecter
+                </a>
+                </div>
+            </div>
+        </nav>
+    </header>
 
 	<div class="size1 flex-w flex-c-m p-t-20 p-b-55 p-l-15 p-r-15">
 		<div class="wsize1 bor1 bg1 p-b-45 p-l-15 p-r-15 p-t-20 respon1">
@@ -48,5 +119,6 @@
             </div>
 		</div>
 	</div>
+    <?php }?>
 </body>
 </html>

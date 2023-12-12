@@ -1,6 +1,7 @@
 <?php
-session_start();
-
+if(session_status()=== PHP_SESSION_NONE){
+    session_start();
+}
 $host = "localhost";
 $db_name = "bibliotheque";
 $username = "root";
@@ -25,7 +26,7 @@ if (isset($_POST['submit'])){
             $_SESSION['identifiant'] = $identifiant;
             $_SESSION['mdp'] = $mdp;
             $_SESSION['id'] = $recupUsers ->fetch()['id'];
-            header("Location: ../index.php");
+            header("Location: connexion.php");
             exit();
         }else{
             echo "Votre mot de passe ou identifiant est incorect";
