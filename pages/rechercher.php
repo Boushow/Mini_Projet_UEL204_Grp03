@@ -92,7 +92,7 @@
 					$term = isset($_POST['term']) ? htmlspecialchars($_POST['term'], ENT_QUOTES, 'UTF-8') : '';
 
 					// Interroger la base de données pour trouver les livres correspondants au terme de recherche
-					$query = "SELECT * FROM livres WHERE titre_livre LIKE :term OR auteur LIKE :term";
+					$query = "SELECT * FROM livres WHERE titre_livre LIKE :term OR auteur LIKE :term OR annee_publication LIKE :term";
 					$stmt = $pdo->prepare($query);
 					$stmt->bindValue(':term','%' . $term . '%', PDO::PARAM_STR);
 					$stmt->execute();
