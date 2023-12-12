@@ -29,7 +29,7 @@
                     <a class="nav-link active" aria-current="page" href="../index.php">Accueil</a>
                     </li>
                     <li class="nav-item">
-                    <a class="nav-link" href="../pages/rechercher.php">Rechercher</a>
+                    <a class="nav-link " href="../pages/rechercher.php">Rechercher</a>
                     </li>
                     <li class="nav-item">
                     <a class="nav-link" href="../pages/ajouter.php">Ajouter un livre</a>
@@ -114,8 +114,8 @@
                 }
             ?>
             <form method="post" action="">
-                <div class="form-group">
-                    <label for="term">Terme de recherche :</label>
+                <div class="form-group pb-2">
+                    <label for="term">Terme recherché :</label>
                     <input type="text" class="form-control" id="term" name="term" value="<?php echo $term; ?>" required>
                 </div>
                 <button type="submit" class="btn btn-primary">Rechercher</button>

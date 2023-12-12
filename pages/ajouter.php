@@ -91,7 +91,7 @@
                 <label for="auteur">Auteur :</label>
                 <input type="text" class="form-control" id="auteur" name="auteur" required>
             </div>
-            <div class="form-group">
+            <div class="form-group pb-2">
                 <label for="annee">Année de publication :</label>
                 <input type="text" class="form-control" id="annee" name="annee" required>
             </div>
