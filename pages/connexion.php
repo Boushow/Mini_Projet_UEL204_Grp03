@@ -1,6 +1,6 @@
 <?php session_start();?>
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" class="overflow-hidden">
 <head>
 	<title>Mini-projet G3</title>
 	<meta charset="UTF-8">
@@ -9,7 +9,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link href="../assets/style.css" rel="stylesheet">
 </head>
-<body class="products">
+<body class="products" style="background-image: url('../assets/medias/Home.png');">
     <?php 
         if(isset($_SESSION['identifiant'])){
     ?>

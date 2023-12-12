@@ -1,6 +1,6 @@
 <?php session_start();?>
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" class="overflow-hidden">
 <head>
     <title>Mini-projet G3</title>
     <meta charset="UTF-8">
@@ -9,7 +9,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link href="../assets/style.css" rel="stylesheet">
 </head>
-<body>
+<body class="bg-image" style="background-image: url('../assets/medias/Home.png');">
     <?php 
         if(isset($_SESSION['identifiant'])){
     ?>
@@ -92,7 +92,7 @@
 					$term = isset($_POST['term']) ? htmlspecialchars($_POST['term'], ENT_QUOTES, 'UTF-8') : '';
 
 					// Interroger la base de données pour trouver les livres correspondants au terme de recherche
-					$query = "SELECT * FROM livres WHERE titre_livre LIKE :term OR auteur LIKE :term";
+					$query = "SELECT * FROM livres WHERE titre_livre LIKE :term OR auteur LIKE :term OR annee_publication LIKE :term";
 					$stmt = $pdo->prepare($query);
 					$stmt->bindValue(':term','%' . $term . '%', PDO::PARAM_STR);
 					$stmt->execute();
