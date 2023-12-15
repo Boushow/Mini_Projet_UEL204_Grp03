@@ -111,7 +111,7 @@
                 <div class="card-body">
                     <div class="card-text">
                         <p>
-                            Cliquez su ce bouton pour ajouter un nouveau livre.
+                            Cliquez sur ce bouton pour ajouter un nouveau livre.
                         </p>
                         <p class="txt-center">
                             <a class="btn btn-primary" href="pages/ajouter.php" title="Ajouter">

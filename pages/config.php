@@ -5,7 +5,7 @@ if(session_status()=== PHP_SESSION_NONE){
 $host = "localhost";
 $db_name = "bibliotheque";
 $username = "root";
-$password = "";
+$password = "root";
 
 try {
     $pdo = new PDO("mysql:host={$host};dbname={$db_name}", $username, $password);
@@ -19,17 +19,21 @@ if (isset($_POST['submit'])){
         $identifiant = htmlspecialchars($_POST['identifiant']);
         $mdp = ($_POST['mdp']);
 
-        $recupUsers = $pdo->prepare('SELECT * FROM utilisateurs WHERE identifiant = ? AND motdepasse = ?');
-        $recupUsers->execute(array($identifiant, $mdp));
+        try {
+            $recupUsers = $pdo->prepare('SELECT * FROM utilisateurs WHERE identifiant = ? AND motdepasse = ?');
+            $recupUsers->execute(array($identifiant, $mdp));
 
-        if($recupUsers->rowCount() > 0){
-            $_SESSION['identifiant'] = $identifiant;
-            $_SESSION['mdp'] = $mdp;
-            $_SESSION['id'] = $recupUsers ->fetch()['id'];
-            header("Location: connexion.php");
-            exit();
-        }else{
-            echo "Votre mot de passe ou identifiant est incorect";
+            if($recupUsers->rowCount() > 0){
+                $_SESSION['identifiant'] = $identifiant;
+                $_SESSION['mdp'] = $mdp;
+                $_SESSION['id'] = $recupUsers->fetch()['id'];
+                header("Location: connexion.php");
+                exit();
+            } else {
+                echo "Votre mot de passe ou identifiant est incorrect";
+            }
+        } catch (PDOException $exception) {
+            echo "Erreur lors de l'exécution de la requête : " . $exception->getMessage();
         }
     }else{
         echo "Veuillez remplir tous les champs";

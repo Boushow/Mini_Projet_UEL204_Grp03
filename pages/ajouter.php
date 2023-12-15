@@ -1,4 +1,12 @@
-<?php session_start();?>
+<?php session_start();
+if (!isset($_SESSION['identifiant'])) {
+    header("Location: connexion.php");
+    exit();
+}
+
+require_once('config.php');
+
+?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -75,13 +83,6 @@
     <?php }?>   
     <div class="container">
         <h1 class="mt-4 mb-4">Ajouter un livre</h1>		
-		<?php
-            
-
-
-        
-        ?>
-
         <form action="ajouter.php" method="post">
             <div class="form-group">
                 <label for="titre">Titre du livre :</label>
@@ -95,10 +96,46 @@
                 <label for="annee">Année de publication :</label>
                 <input type="text" class="form-control" id="annee" name="annee" required>
             </div>
-            <button type="submit" class="btn btn-primary">Ajouter le livre</button>
+            <button type="submit" class="btn btn-primary" name="submit">Ajouter le livre</button>
         </form>
 
         <a href="../index.php" class="btn btn-secondary mt-3">Retour à l'accueil</a>
     </div>
+    <?php
+        $titre = isset($_POST['titre']) ? htmlspecialchars($_POST['titre']) : '';
+        $auteur = isset($_POST['auteur']) ? htmlspecialchars($_POST['auteur']) : '';
+        $annee = isset($_POST['annee']) ? intval($_POST['annee']) : 0;    
+        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
+
+            if (empty($titre) || !ctype_alpha($titre)) {
+                echo "Le champ 'Titre' ne peut pas être vide.";
+            }
+        
+            if (empty($auteur) || !ctype_alpha($titre)) {
+                echo "Le champ 'Auteur' ne peut pas être vide.";
+            }
+        
+            if (!is_numeric($annee) || $annee > 2024) {
+                echo "L'année doit être inférieur à 2024.";
+            }
+        
+            else {
+                try {
+                    $insertion = $pdo->prepare('INSERT INTO livres (titre_livre, auteur, annee_publication) VALUES (?, ?, ?)');
+            
+                    $insertion->execute([$titre, $auteur, $annee]);
+            
+                    echo "Livre ajouté avec succès !";
+                } catch (PDOException $e) {
+                    echo "Erreur d'insertion : " . $e->getMessage();
+                }
+            }
+        }        
+
+    
+        echo "Titre du livre : " . $titre . "<br>";
+        echo "Auteur : " . $auteur . "<br>";
+        echo "Année de publication : " . $annee . "<br>";
+    ?>
 </body>
 </html>
