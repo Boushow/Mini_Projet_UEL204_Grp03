@@ -74,7 +74,7 @@
     </header>
     <?php }?>   
     <div class="size1 flex-w flex-c-m p-t-20 p-b-55 p-l-15 p-r-15">
-        <div class="wsize1 bor1 bg1 p-b-45 p-l-15 p-r-15 p-t-20 respon1">
+        <div class="wsize1 bor1 bg1 p-b-45 p-l-15 p-r-15 p-t-20 respon1 bg-white">
             <p class="txt-center m1-txt1 p-t-33 p-b-68">
                 Rechercher des livres
             </p>

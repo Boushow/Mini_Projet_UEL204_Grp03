@@ -73,54 +73,37 @@
         </nav>
     </header>
     <?php }?>   
-	<div class="size1 flex-w flex-c-m p-t-4 p-b-55 p-l-15 p-r-15">
-		<div class="wsize1 bor1 bg1 p-b-45 p-l-15 p-r-15 p-t-4 respon1">
-			<p class="txt-center m1-txt1 p-t-4 p-b-68">
+	<div class="size1 flex-w flex-c-m p-t-4 p-b-55 p-l-15 p-r-15 ">
+		<div class="wsize1 bor1 bg1 p-b-45 p-l-15 p-r-15 p-t-4 respon1 bg-white">
+			<p class="txt-center text-black m1-txt1 p-t-20 p-b-30">
 				Mini-projet G3
 			</p>
-            <div class="alert alert-info text-justify">
+            <div class="alert alert-info txt-center">
                 <p>
                     Bienvenue dans notre bibliothèque !
                 </p>
 
             </div>
-            <!-- Rechercher -->
-            <div class="card">
-                <div class="card-header">
-                    <span class="font-weight-bold">Rechercher :</span>
-                </div>
-                <div class="card-body">
-                    <div class="card-text">
-                        <p>
-                            Vers la page de recherche
-                        </p>
-                        <p class="txt-center">
-                            <a class="btn btn-primary" href="pages/rechercher.php" title="Rechercher">
-                                Rechercher
+            
+            <div class="d-flex justify-content-evenly ">
+                    <div class="p-4">
+                        <p class="txt-center m1-txt1 text-black border-black border-bottom p-b-4">Ajout de livre</p>
+                        <div class="d-flex justify-content-center p-t-4">
+                            <a class="" href="pages/ajouter.php" title="Ajouter">
+                                <img class="p-t-4" src="assets/icones/ajouter.png" alt="icone ajout" width="120" height="115">
                             </a>
-                        </p>
+                        </div>
                     </div>
-                </div>
-            </div>
 
-            <!-- Ajout de Livre -->
-            <div class="card">
-                <div class="card-header">
-                    <span class="font-weight-bold">Ajouter un livre</span>
-                </div>
-                <div class="card-body">
-                    <div class="card-text">
-                        <p>
-                            Cliquez su ce bouton pour ajouter un nouveau livre.
-                        </p>
-                        <p class="txt-center">
-                            <a class="btn btn-primary" href="pages/ajouter.php" title="Ajouter">
-                                Ajouter un livre
+                    <div class="p-4">
+                        <p class="txt-center m1-txt1 text-black border-black border-bottom p-b-4">Recherche de livre</p>
+                        <div class="d-flex justify-content-center">
+                            <a href="pages/rechercher.php" title="Rechercher">
+                                <img class="p-t-4" src="assets/icones/recherche.png" alt="icone ajout" width="120" height="115">
                             </a>
-                        </p>
+                        </div>
                     </div>
-                </div>
-            </div>
+            </div>       
 		</div>
 	</div>
 </body>

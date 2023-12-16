@@ -74,7 +74,7 @@
     </header>
     <?php }?>   
     <div class="container d-flex justify-content-center p-t-150 p-b-55 p-l-15 p-r-15">
-        <div class="wsize1 bor1 bg1 p-b-45 p-l-15 p-r-15 p-t-4 respon1">
+        <div class="wsize1 bor1 bg1 p-b-45 p-l-15 p-r-15 p-t-4 respon1 bg-white">
             <h1 class="mt-4 mb-4">Ajouter un livre</h1>		
             <?php
                 
@@ -99,7 +99,11 @@
                 <button type="submit" class="btn btn-primary">Ajouter le livre</button>
             </form>
 
-            <a href="../index.php" class="btn btn-secondary mt-3">Retour à l'accueil</a>
+            <p class="txt-center">
+                <a class="btn btn-secondary" href="../index.php" title="Revenir à l'accueil">
+                    Revenir à l'accueil
+                </a>
+            </p>
         </div>
     </div>
 </body>
