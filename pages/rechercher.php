@@ -78,29 +78,52 @@
             <p class="txt-center m1-txt1 p-t-33 p-b-68">
                 Rechercher des livres
             </p>
+	    <form method="post" action="">
+                <div class="form-group pb-2">
+                    <label for="term">Terme recherché :</label>
+                    <input type="text" class="form-control" id="term" name="term" value="<?php echo $term; ?>">
+                </div>
+                <button type="submit" class="btn btn-primary">Rechercher</button>
+            </form>
+	    <div class="mb-3">
+		<a href="?order_by=alphabetic" class="btn btn-secondary">Trier par ordre alphabétique</a>
+                <a href="?order_by=chronological" class="btn btn-secondary">Trier par ordre chronologique</a>
+            </div>
             <?php
-				require_once('config.php'); // Inclure le fichier de configuration de la base de données
+		require_once('config.php'); // Inclure le fichier de configuration de la base de données
 
 
-				// Initialiser les variables
-				$term = "";
-				$results = [];
+		// Initialiser les variables
+		$term = "";
+		$results = [];
 
-				// Vérifier si le formulaire a été soumis
-				if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-					// Récupérer le terme de recherche
-					$term = isset($_POST['term']) ? htmlspecialchars($_POST['term'], ENT_QUOTES, 'UTF-8') : '';
+		// Vérifier si des paramètres de tri sont spécifiés
+                $order_by = isset($_GET['order_by']) ? $_GET['order_by'] : '';
 
-					// Interroger la base de données pour trouver les livres correspondants au terme de recherche
-					$query = "SELECT * FROM livres WHERE titre_livre LIKE :term OR auteur LIKE :term OR annee_publication LIKE :term";
-					$stmt = $pdo->prepare($query);
-					$stmt->bindValue(':term','%' . $term . '%', PDO::PARAM_STR);
-					$stmt->execute();
-					$results = $stmt->fetchAll(PDO::FETCH_ASSOC);
-				}
-				?>
-				
-                <?php
+		// Récupérer tous les livres avec un éventuel tri
+               	$query = "SELECT * FROM livres";
+                if ($order_by === 'alphabetic') {
+                    $query .= " ORDER BY titre_livre ASC";
+                } elseif ($order_by === 'chronological') {
+                    	$query .= " ORDER BY annee_publication ASC";
+                }
+
+                $stmt = $pdo->prepare($query);
+                $stmt->execute();
+                $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+		// Vérifier si le formulaire a été soumis
+		if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+			// Récupérer le terme de recherche
+			$term = isset($_POST['term']) ? htmlspecialchars($_POST['term'], ENT_QUOTES, 'UTF-8') : '';
+
+			// Interroger la base de données pour trouver les livres correspondants au terme de recherche
+			$query = "SELECT * FROM livres WHERE titre_livre LIKE :term OR auteur LIKE :term OR annee_publication LIKE :term";
+			$stmt = $pdo->prepare($query);
+			$stmt->bindValue(':term','%' . $term . '%', PDO::PARAM_STR);
+			$stmt->execute();
+			$results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+		}
                 // Afficher les résultats de la recherche
                 if ($_SERVER['REQUEST_METHOD'] === 'POST'){
                     if (!empty($results)) {
@@ -115,15 +138,6 @@
                     }
                 }
             ?>
-            <form method="post" action="">
-                <div class="form-group pb-2">
-                    <label for="term">Terme recherché :</label>
-                    <input type="text" class="form-control" id="term" name="term" value="<?php echo $term; ?>" required>
-                </div>
-                <button type="submit" class="btn btn-primary">Rechercher</button>
-            </form>
-            <div class="mt-3">
-            </div>
             <p class="txt-center">
                 <a class="btn btn-secondary" href="../index.php" title="Revenir à l'accueil">
                     Revenir à l'accueil
