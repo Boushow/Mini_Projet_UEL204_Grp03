@@ -102,15 +102,17 @@
 				
                 <?php
                 // Afficher les résultats de la recherche
-                if (!empty($results)) {
-                    echo '<h3>Résultats de la recherche :</h3>';
-                    echo '<ul>';
-                    foreach ($results as $result) {
-                        echo '<li>' . $result['titre_livre'] . ' - ' . $result['auteur'] . ' (' . $result['annee_publication'] . ')</li>';
+                if ($_SERVER['REQUEST_METHOD'] === 'POST'){
+                    if (!empty($results)) {
+                        echo '<h3>Résultats de la recherche :</h3>';
+                        echo '<ul>';
+                        foreach ($results as $result) {
+                            echo '<li>' . $result['titre_livre'] . ' - ' . $result['auteur'] . ' (' . $result['annee_publication'] . ')</li>';
+                        }
+                        echo '</ul>';
+                    } else {
+                        echo '<p>Aucun résultat trouvé.</p>';
                     }
-                    echo '</ul>';
-                } else {
-                    echo '<p>Aucun résultat trouvé.</p>';
                 }
             ?>
             <form method="post" action="">
