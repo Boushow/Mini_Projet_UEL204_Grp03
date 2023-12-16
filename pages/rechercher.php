@@ -1,6 +1,6 @@
 <?php session_start();?>
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" class="overflow-hidden">
 <head>
     <title>Mini-projet G3</title>
     <meta charset="UTF-8">
@@ -9,7 +9,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link href="../assets/style.css" rel="stylesheet">
 </head>
-<body>
+<body class="bg-image" style="background-image: url('../assets/medias/Home.png');">
     <?php 
         if(isset($_SESSION['identifiant'])){
     ?>
@@ -74,7 +74,7 @@
     </header>
     <?php }?>   
     <div class="size1 flex-w flex-c-m p-t-20 p-b-55 p-l-15 p-r-15">
-        <div class="wsize1 bor1 bg1 p-b-45 p-l-15 p-r-15 p-t-20 respon1">
+        <div class="wsize1 bor1 bg1 p-b-45 p-l-15 p-r-15 p-t-20 respon1 bg-white">
             <p class="txt-center m1-txt1 p-t-33 p-b-68">
                 Rechercher des livres
             </p>
@@ -124,18 +124,18 @@
 			$stmt->execute();
 			$results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 		}
-
-
                 // Afficher les résultats de la recherche
-                if (!empty($results)) {
-                    echo '<h3>Résultats de la recherche :</h3>';
-                    echo '<ul>';
-                    foreach ($results as $result) {
-                        echo '<li>' . $result['titre_livre'] . ' - ' . $result['auteur'] . ' (' . $result['annee_publication'] . ')</li>';
+                if ($_SERVER['REQUEST_METHOD'] === 'POST'){
+                    if (!empty($results)) {
+                        echo '<h3>Résultats de la recherche :</h3>';
+                        echo '<ul>';
+                        foreach ($results as $result) {
+                            echo '<li>' . $result['titre_livre'] . ' - ' . $result['auteur'] . ' (' . $result['annee_publication'] . ')</li>';
+                        }
+                        echo '</ul>';
+                    } else {
+                        echo '<p>Aucun résultat trouvé.</p>';
                     }
-                    echo '</ul>';
-                } else {
-                    echo '<p>Aucun résultat trouvé.</p>';
                 }
             ?>
             <p class="txt-center">
