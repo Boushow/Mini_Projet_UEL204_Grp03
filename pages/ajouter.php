@@ -8,7 +8,7 @@ require_once('config.php');
 
 ?>
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" class="overflow-hidden">
 <head>
 	<title>Mini-projet G3</title>
 	<meta charset="UTF-8">
@@ -17,7 +17,7 @@ require_once('config.php');
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link href="../assets/style.css" rel="stylesheet">
 </head>
-<body>
+<body class="bg-image" style="background-image: url('../assets/medias/Home.png');">
 <?php 
         if(isset($_SESSION['identifiant'])){
     ?>
@@ -99,7 +99,12 @@ require_once('config.php');
             <button type="submit" class="btn btn-primary" name="submit">Ajouter le livre</button>
         </form>
 
-        <a href="../index.php" class="btn btn-secondary mt-3">Retour à l'accueil</a>
+            <p class="txt-center">
+                <a class="btn btn-secondary" href="../index.php" title="Revenir à l'accueil">
+                    Revenir à l'accueil
+                </a>
+            </p>
+        </div>
     </div>
     <?php
         $titre = isset($_POST['titre']) ? htmlspecialchars($_POST['titre']) : '';

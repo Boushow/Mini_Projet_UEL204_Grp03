@@ -2,7 +2,7 @@
 
 ?>
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" class="overflow-hidden">
 <head>
 	<title>Mini-projet G3</title>
 	<meta charset="UTF-8">
@@ -11,7 +11,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link href="../assets/style.css" rel="stylesheet">
 </head>
-<body class="products">
+<body class="products" style="background-image: url('../assets/medias/Home.png');">
     <?php 
         if(isset($_SESSION['identifiant'])){
     ?>
@@ -44,7 +44,7 @@
     </header>
 
     <div class="d-flex justify-content-center align-items-center vh-100">
-        <div class="border rounded p-4 text-center">
+        <div class="border rounded p-4 text-center bg-white">
             <p class="mb-0">Bienvenue, <?php echo $_SESSION['identifiant']?> !</p>
             <div class="pt-2">
             <a class="btn btn-primary" href="../pages/deconnexion.php" title="Deconnexion">Se déconnecter</a>
@@ -86,7 +86,7 @@
     </header>
 
 	<div class="size1 flex-w flex-c-m p-t-20 p-b-55 p-l-15 p-r-15">
-		<div class="wsize1 bor1 bg1 p-b-45 p-l-15 p-r-15 p-t-20 respon1">
+		<div class="wsize1 bor1 bg1 p-b-45 p-l-15 p-r-15 p-t-20 respon1 bg-white">
 			<p class="txt-center m1-txt1 p-t-33 p-b-68">
 				Connectez-vous
 			</p>
@@ -97,7 +97,7 @@
 
             </div>
             <p class="txt-center pb-4">
-                <a class="btn btn-primary" href="../index.php" title="Revenir à l'accueil">
+                <a class="btn btn-secondary" href="../index.php" title="Revenir à l'accueil">
                 	Revenir à l'accueil
                 </a>
             </p>
