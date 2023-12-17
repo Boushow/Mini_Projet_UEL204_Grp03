@@ -98,16 +98,16 @@
             <!-- Ajout de Livre -->
             <div class="card">
                 <div class="card-header">
-                    <span class="font-weight-bold">Ajouter un livre</span>
+                    <span class="font-weight-bold">Rechercher un livre</span>
                 </div>
                 <div class="card-body">
                     <div class="card-text">
                         <p>
-                            Cliquez sur ce bouton pour ajouter un nouveau livre.
+                            Cliquez sur ce bouton pour rechercher un livre.
                         </p>
                         <p class="txt-center">
-                            <a class="btn btn-primary" href="pages/ajouter.php" title="Ajouter">
-                                Ajouter un livre
+                            <a class="btn btn-primary" href="pages/rechercher.php" title="Ajouter">
+                                Rechercher un livre
                             </a>
                         </div>
                     </div>
