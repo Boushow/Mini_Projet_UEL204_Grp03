@@ -79,6 +79,9 @@
                 Rechercher des livres
             </p>
 	    <form method="post" action="">
+        <?php 
+            $term = isset($_POST['term']) ? htmlspecialchars($_POST['term'], ENT_QUOTES, 'UTF-8') : '';
+         ?>
                 <div class="form-group pb-2">
                     <label for="term">Terme recherché :</label>
                     <input type="text" class="form-control" id="term" name="term" value="<?php echo $term; ?>">
@@ -98,7 +101,7 @@
 		$results = [];
 
 		// Vérifier si des paramètres de tri sont spécifiés
-                $order_by = isset($_GET['order_by']) ? $_GET['order_by'] : '';
+        $order_by = isset($_GET['order_by']) ? $_GET['order_by'] : '';
 
 		// Récupérer tous les livres avec un éventuel tri
                	$query = "SELECT * FROM livres";
@@ -125,7 +128,6 @@
 			$results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 		}
                 // Afficher les résultats de la recherche
-                if ($_SERVER['REQUEST_METHOD'] === 'POST'){
                     if (!empty($results)) {
                         echo '<h3>Résultats de la recherche :</h3>';
                         echo '<ul>';
@@ -136,7 +138,6 @@
                     } else {
                         echo '<p>Aucun résultat trouvé.</p>';
                     }
-                }
             ?>
             <p class="txt-center">
                 <a class="btn btn-secondary" href="../index.php" title="Revenir à l'accueil">
