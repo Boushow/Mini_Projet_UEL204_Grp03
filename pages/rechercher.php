@@ -92,41 +92,42 @@
 		<a href="?order_by=alphabetic" class="btn btn-secondary">Trier par ordre alphabétique</a>
                 <a href="?order_by=chronological" class="btn btn-secondary">Trier par ordre chronologique</a>
             </div>
+
             <?php
-		require_once('config.php'); // Inclure le fichier de configuration de la base de données
+                require_once('config.php'); // Inclure le fichier de configuration de la base de données
 
 
-		// Initialiser les variables
-		$term = "";
-		$results = [];
+                // Initialiser les variables
+                // Récupérer le terme de recherche
+                $term = isset($_POST['term']) ? htmlspecialchars($_POST['term'], ENT_QUOTES, 'UTF-8') : '';;
+                $results = [];
 
-		// Vérifier si des paramètres de tri sont spécifiés
-        $order_by = isset($_GET['order_by']) ? $_GET['order_by'] : '';
+                // Vérifier si des paramètres de tri sont spécifiés
+                $order_by = isset($_GET['order_by']) ? $_GET['order_by'] : '';
 
-		// Récupérer tous les livres avec un éventuel tri
-               	$query = "SELECT * FROM livres";
-                if ($order_by === 'alphabetic') {
-                    $query .= " ORDER BY titre_livre ASC";
-                } elseif ($order_by === 'chronological') {
-                    	$query .= " ORDER BY annee_publication ASC";
+                // Récupérer tous les livres avec un éventuel tri
+                        $query = "SELECT * FROM livres";
+                        if ($order_by === 'alphabetic') {
+                            $query .= " ORDER BY titre_livre ASC";
+                        } elseif ($order_by === 'chronological') {
+                                $query .= " ORDER BY annee_publication ASC";
+                        }
+
+                        $stmt = $pdo->prepare($query);
+                        $stmt->execute();
+                        $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+                // Vérifier si le formulaire a été soumis
+                if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+                    // Interroger la base de données pour trouver les livres correspondants au terme de recherche
+                    $query = "SELECT * FROM livres WHERE titre_livre LIKE :term OR auteur LIKE :term OR annee_publication LIKE :term";
+                    $stmt = $pdo->prepare($query);
+                    $stmt->bindValue(':term','%' . $term . '%', PDO::PARAM_STR);
+                    $stmt->execute();
+                    $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 }
-
-                $stmt = $pdo->prepare($query);
-                $stmt->execute();
-                $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-		// Vérifier si le formulaire a été soumis
-		if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-			// Récupérer le terme de recherche
-			$term = isset($_POST['term']) ? htmlspecialchars($_POST['term'], ENT_QUOTES, 'UTF-8') : '';
-
-			// Interroger la base de données pour trouver les livres correspondants au terme de recherche
-			$query = "SELECT * FROM livres WHERE titre_livre LIKE :term OR auteur LIKE :term OR annee_publication LIKE :term";
-			$stmt = $pdo->prepare($query);
-			$stmt->bindValue(':term','%' . $term . '%', PDO::PARAM_STR);
-			$stmt->execute();
-			$results = $stmt->fetchAll(PDO::FETCH_ASSOC);
-		}
+                
                 // Afficher les résultats de la recherche
                     if (!empty($results)) {
                         echo '<h3>Résultats de la recherche :</h3>';
@@ -139,6 +140,7 @@
                         echo '<p>Aucun résultat trouvé.</p>';
                     }
             ?>
+            
             <p class="txt-center">
                 <a class="btn btn-secondary" href="../index.php" title="Revenir à l'accueil">
                     Revenir à l'accueil
