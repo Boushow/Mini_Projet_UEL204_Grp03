@@ -94,42 +94,39 @@
             </div>
 
             <?php
-                require_once('config.php'); // Inclure le fichier de configuration de la base de données
-
+                require_once('config.php');// Inclure le fichier de configuration de la base de données
 
                 // Initialiser les variables
                 // Récupérer le terme de recherche
-                $term = isset($_POST['term']) ? htmlspecialchars($_POST['term'], ENT_QUOTES, 'UTF-8') : '';;
-                $results = [];
+                $term = isset($_POST['term']) ? htmlspecialchars($_POST['term'], ENT_QUOTES,'UTF-8'):'';
+                $order_by = isset($_GET['order_by'])? $_GET['order_by'] : '';
 
-                // Vérifier si des paramètres de tri sont spécifiés
-                $order_by = isset($_GET['order_by']) ? $_GET['order_by'] : '';
+                // Vérifier si le formulaire a été soumis 
+                if($_SERVER['REQUEST_METHOD'] === 'POST' || !empty($order_by)){
 
-                // Récupérer tous les livres avec un éventuel tri
-                        $query = "SELECT * FROM livres";
-                        if ($order_by === 'alphabetic') {
-                            $query .= " ORDER BY titre_livre ASC";
-                        } elseif ($order_by === 'chronological') {
-                                $query .= " ORDER BY annee_publication ASC";
-                        }
-
-                        $stmt = $pdo->prepare($query);
-                        $stmt->execute();
-                        $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-                // Vérifier si le formulaire a été soumis
-                if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                    // Récupérer tous les livres avec un éventuel tri
+                    $query = "SELECT * FROM livres";
 
                     // Interroger la base de données pour trouver les livres correspondants au terme de recherche
-                    $query = "SELECT * FROM livres WHERE titre_livre LIKE :term OR auteur LIKE :term OR annee_publication LIKE :term";
-                    $stmt = $pdo->prepare($query);
-                    $stmt->bindValue(':term','%' . $term . '%', PDO::PARAM_STR);
+                    if(!empty($term)){
+                        $query .= " WHERE titre_livre LIKE :term OR auteur LIKE :term OR annee_publication LIKE :term";
+                    }
+
+                    if ($order_by === 'alphabetic'){
+                        $query .= " ORDER BY titre_livre ASC";
+                    }elseif($order_by === 'chronological'){
+                        $query .= " ORDER BY annee_publication ASC";
+                    }
+
+                    $stmt = $pdo ->prepare($query);
+                    if(!empty($term)){
+                        $stmt->bindValue(':term','%'.$term.'%', PDO::PARAM_STR);
+                    }
                     $stmt->execute();
                     $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
-                }
-                
-                // Afficher les résultats de la recherche
-                    if (!empty($results)) {
+
+                    // Afficher les résultats de la recherche
+                    if(!empty($results)){
                         echo '<h3>Résultats de la recherche :</h3>';
                         echo '<ul>';
                         foreach ($results as $result) {
@@ -138,7 +135,8 @@
                         echo '</ul>';
                     } else {
                         echo '<p>Aucun résultat trouvé.</p>';
-                    }
+                    };
+                };
             ?>
             
             <p class="txt-center">
