@@ -1,4 +1,6 @@
-<?php session_start();?>
+<?php session_start();
+
+?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -92,6 +94,7 @@
                 <p>
                     Cette page permet de vous connecter à votre compte.
                 </p>
+
             </div>
             <p class="txt-center pb-4">
                 <a class="btn btn-primary" href="../index.php" title="Revenir à l'accueil">
@@ -100,6 +103,14 @@
             </p>
             <div>
                 <form method="POST" action="config.php" class="p-4 rounded w-100 ">
+                <?php
+                 if (isset($_SESSION['erreur_connexion'])) {
+                    echo '<div class="alert alert-danger" role="alert">';
+                    echo '<p>' . $_SESSION['erreur_connexion'] . '</p>';
+                    echo '</div>';
+                    unset($_SESSION['erreur_connexion']); 
+                }
+                ?>
                     <div class="row mb-3 d-flex justify-content-center">
                         <label for="inputLogin3" class="col-sm-2 col-form-label">Identifiant</label>
                         <div class="col-sm-4">
@@ -114,6 +125,9 @@
                     </div>
                     <div class="d-flex justify-content-center">
                         <button type="submit" name="submit" class="btn btn-primary w-25" >Se connecter</button>
+                    </div>
+                    <div class="text-center mt-3">
+                        <p>Pas encore inscrit ? <a href="inscription.php">S'inscrire</a></p>
                     </div>
                 </form>
             </div>

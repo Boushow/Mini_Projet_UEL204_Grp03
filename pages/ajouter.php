@@ -108,22 +108,23 @@ require_once('config.php');
         if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
 
             if (empty($titre) || !ctype_alpha($titre)) {
-                echo "Le champ 'Titre' ne peut pas être vide.";
+                $erreurs[] ="Le champ 'Titre' ne peut pas être vide.";
             }
         
             if (empty($auteur) || !ctype_alpha($titre)) {
-                echo "Le champ 'Auteur' ne peut pas être vide.";
+                $erreurs[] = "Le champ 'Auteur' ne peut pas être vide.";
             }
         
             if (!is_numeric($annee) || $annee > 2024) {
-                echo "L'année doit être inférieur à 2024.";
+                $erreurs[] = "L'année doit être inférieur à 2024.";
             }
         
             else {
                 try {
-                    $insertion = $pdo->prepare('INSERT INTO livres (titre_livre, auteur, annee_publication) VALUES (?, ?, ?)');
+                    $ajoutePar = $_SESSION['identifiant'];
+                    $insertion = $pdo->prepare('INSERT INTO livres (titre_livre, auteur, annee_publication, ajoute_par) VALUES (?, ?, ?, ?)');
             
-                    $insertion->execute([$titre, $auteur, $annee]);
+                    $insertion->execute([$titre, $auteur, $annee, $ajoutePar]);
             
                     echo "Livre ajouté avec succès !";
                 } catch (PDOException $e) {
